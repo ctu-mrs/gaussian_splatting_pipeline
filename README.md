@@ -1,5 +1,9 @@
 # Gaussian Splat model generation
 
+This repository provides a comprehensive tutorial and automated scripts for generating 3D Gaussian Splats and dense meshes from images.
+Together, these allow you to create highly accurate digital twins of real-world environments in Unreal Engine.
+The Gaussian splats deliver photorealistic visuals, while the perfectly aligned 3D mesh enables accurate physical interactions like collisions and LiDAR simulations.
+
 ## Prerequisities
 
 ### Disk space
@@ -12,7 +16,7 @@ Additional 100 GBs might be needed for Unreal Editor and the related works.
 ```bash
 curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg \
   && curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list | \
-    sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' | \k
+    sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' | \
     sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list
 
 sudo apt-get update
@@ -31,9 +35,9 @@ You can get easily build our own:
 ```bash
 git clone https://github.com/colmap/colmap --branch 4.0.4
 ```
-1. `cd docker`
-2. modify the CUDA version in the `Dockerfile`
-3. run `./build.sh`
+3. `cd docker`
+4. modify the CUDA version in the `Dockerfile`
+5. run `./build.sh`
 
 The `klaxalk/colmap:latest` is currently the `4.0.4` version with CUDA `12.8`
 
@@ -58,9 +62,9 @@ The `klaxalk/nerfstudio:latest` image is `v1.1.5` at the time of writing this tu
 
 ### 1. input data
 
-The 3D model is generate from a series of images, that should be placed into the `00_data/images` folder.
+The 3D model is generated from a series of images, that should be placed into the `00_data/images` folder.
 
-Alternatively, you can extract the images form a video:
+Alternatively, you can extract the images from a video:
 1. Copy the video to `00_data/video.mp4`.
 2. Modify `01_data_preparation/01_extract_images.sh` to configure the extraction method: fixed rate or fixed image count.
 3. Run `./01_data_preparation/01_extract_images.sh` (minutes to tens of minutes).
@@ -73,11 +77,11 @@ Alternatively, you can extract the images form a video:
 > Use between 200 and 800 images. More images create a difficult problem for solving.
 
 > [!TIP]
-> When gathering images, make sure the data contain parallel motion, rather than rotation. Cover the scene with duplicit viewpoints (different 3D locations).
+> When gathering images, make sure the data contain parallel motion, rather than rotation. Cover the scene with duplicate viewpoints (different 3D locations).
 
 ### Camera registration (Sparse reconstruction)
 
-Sparse reconstruction is the neccessary steps for creating a Gaussian splat.
+Sparse reconstruction is the necessary steps for creating a Gaussian splat.
 Moreover, it is also needed for 3D mesh generation (for simulating LiDAR and collisions).
 
 1. `./02_camera_registration/01_extract_features.sh` (minutes to tens of minutes)
@@ -90,15 +94,15 @@ The model can be checked via _Colmap GUI_:
 ./02_camera_registration/04_gui_visual_check.sh
 ```
 In the GUI, select **File->import model** and select the folder ``/working/workspace/sparse/0``.
-You shold see the following visual:
+You should see the following visual:
 ![](./.images/colmap_check.png)
 
-### Splat generation
+### Gaussian Splat generation
 
 The Gaussian splat generation is an optimization process that will gradually produce finer visual model.
 
 1. `./03_splat_generation/01_convert_to_nerfstudio.sh` (minutes).
-2. `./03_splat_generation/02_splatfacto,sh` (tens of minutes to hours).
+2. `./03_splat_generation/02_splatfacto.sh` (tens of minutes to hours).
 
 You can check the process in real time at `http://127.0.0.1:7007`.
 ![](./.images/nerfstudio_splat_generation.jpg)
@@ -112,13 +116,13 @@ Import the file `./00_data/splat_export/splat.ply`.
 > You can interrupt the splat generation. If you run it again, it will resume from a saved checkpoint.
 
 > [!TIP]
-> You can interrupt the splat generation early if you are satisfy with the current state.
+> The quality of the splat is directly influenced by the image downsample factor, which can be set in the script. If you have enough GPU memory, you don't have to downsample.
 
 ### Dense reconstruction (Mesh generation)
 
 In order to simulate collisions and LiDAR, we need a dense 3D mesh.
 The mesh is not pretty, but serves as a physical model for collision checking.
-The dense reconstruction is the most time-consiming part of the whole pipeline.
+The dense reconstruction is the most time-consuming part of the whole pipeline.
 
 1. `./04_dense_reconstruction/01_undistort_images.sh` (tens of minutes).
 2. `./04_dense_reconstruction/02_stereo_reconstructions.sh` (hours).
@@ -140,7 +144,7 @@ After generating the Gaussian splat and the 3D mesh, we need to transform the me
 
 ### The output
 
-Now you can extact the Gaussian Splat and the Mesh
+Now you can extract the Gaussian Splat and the Mesh
 * `./00_data/splat_export/splat.ply`
 * `./00_data/poisson-mesh-transformed.glb`
 

@@ -66,7 +66,7 @@ The `klaxalk/nerfstudio:latest` image is `v1.1.5` at the time of writing this tu
 
 ### Unreal Engine 5.7
 
-I recommend to use the NanoGS UE plugin (([NanoGS for UE 5.7 fixed for Linux](https://drive.google.com/file/d/1tNLNAxK7WzqxuNhSFHaO_brW1yEVd13w/view?usp=sharing))) in Unreal Engine 5.7.4.
+I recommend to use the NanoGS UE plugin ([NanoGS for UE 5.7 fixed for Linux](https://drive.google.com/file/d/1tNLNAxK7WzqxuNhSFHaO_brW1yEVd13w/view?usp=sharing)) in Unreal Engine 5.7.4.
 Older engine versions do not support this plugin.
 
 ## The pipeline

@@ -167,6 +167,8 @@ Now you can extact the Gaussian Splat and the Mesh
   * Set the **Absolute rotation** of the mesh to 180, 0, 90
   * Set the scale to 0.001
 
+![](./.images/nanite_collisions.png)
+![](./.images/custom_collision_mesh.png)
 ![](./.images/mesh_transformation.png)
 
 ### Final touches

@@ -134,3 +134,36 @@ After generating the Gaussian splat and the 3D mesh, we need to transform the me
 Now you can extact the Gaussian Splat and the Mesh
 * `./00_data/splat_export/splat.ply`
 * `./00_data/poisson-mesh-transformed.glb`
+
+## Integrating into Unreal Engine
+
+### Loading the Gaussian Splat
+
+1. Add the NanoGS plugin into the _Plugins_ folder within your project and let it compile.
+2. Import the `splat.ply` file.
+3. Drag the splat into the scene.
+4. Set **Position** to 0, 0, 0.
+
+### Loading the mesh
+
+1. Import the mesh file (`poisson-mesh-transformed.glb`).
+2. Adjust the meshes collision settings:
+  1. (top menu) Collision->Remove collision
+  2. (Details) Complex collision mesh: select the same mesh you are editing right now
+  3. (Details) Collision complexity: Use complex collisions as simple
+  4. (Details) Nanite Settings->Generate fallback mesh: Enabled
+  5. (Details) Fallback Target->Percent triangles
+  6. (Details) Fallback Triangle Percentage: 100
+  7. (Details) **Then click to Apply**
+  8. Save the meshh
+  9. Drag the mesh into the scene
+4. Rotate and scale the mesh to match the Gaussian splat.
+  1. Set **Position** to 0, 0, 0
+  2. Set the **Absolute rotation** of the mesh to 180, 0, 90.
+  3. Set the scale to 0.001.
+![](./.images/mesh_transformation.png)
+
+### Final touches
+
+1. Now rotate and scale the mesh with the splat together to match the real orientation and size.
+2. Make the mesh invisible.

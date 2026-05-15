@@ -11,6 +11,13 @@ The Gaussian splats deliver photorealistic visuals, while the perfectly aligned 
 Be ready with at least 30 GB of free disk space just for the splat and mesh generation.
 Additional 100 GBs might be needed for Unreal Editor and the related works.
 
+### Graphics card
+
+Having a dedicated nvidia graphics card helps.
+This tutorial has been developped and tested with GTX 4060 with 8 GB of memory, running the 570.211.01 driver (CUDA 12.8).
+The Unreal Engine 5.7 requires nvidia driver 570 or higher.
+I recommend sticking to this one.
+
 ### Nvidia container toolkit
 
 ```bash
@@ -57,6 +64,10 @@ docker pull klaxalk/nerfstudio:latest
 ```
 The `klaxalk/nerfstudio:latest` image is `v1.1.5` at the time of writing this tutorial.
 
+### Unreal Engine 5.7
+
+I recommend to use the NanoGS UE plugin (([NanoGS for UE 5.7 fixed for Linux](https://drive.google.com/file/d/1tNLNAxK7WzqxuNhSFHaO_brW1yEVd13w/view?usp=sharing))) in Unreal Engine 5.7.4.
+Older engine versions do not support this plugin.
 
 ## The pipeline
 
@@ -152,7 +163,7 @@ Now you can extract the Gaussian Splat and the Mesh
 
 ### Loading the Gaussian Splat
 
-1. Add the NanoGS plugin into the _Plugins_ folder within your project and let it compile.
+1. Add the NanoGS plugin ([NanoGS for UE 5.7 fixed for Linux](https://drive.google.com/file/d/1tNLNAxK7WzqxuNhSFHaO_brW1yEVd13w/view?usp=sharing)) into the _Plugins_ folder within your project and let it compile.
 2. Import the `splat.ply` file.
 3. Drag the splat into the scene.
 4. Set **Position** to 0, 0, 0

@@ -48,6 +48,10 @@ fi
 # We explicitly tell COLMAP to use the GPU for Sift Extraction
 echo "Running COLMAP Poisson mesh creator"
 
+## Note
+## --PoissonMeshing.depth 11 makes it use coarser Octal Map, which results in coarses mesh.
+## We want a coarses mesh for Unreal's collition checking.
+
 docker run "${DOCKER_ARGS[@]}" "${COLMAP_IMAGE}" \
 	colmap poisson_mesher \
     --input_path /working/workspace/dense/fused.ply \

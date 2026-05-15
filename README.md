@@ -148,19 +148,19 @@ Now you can extact the Gaussian Splat and the Mesh
 
 1. Import the mesh file (`poisson-mesh-transformed.glb`).
 2. Adjust the meshes collision settings:
-  1. (top menu) Collision->Remove collision
-  2. (Details) Complex collision mesh: select the same mesh you are editing right now
-  3. (Details) Collision complexity: Use complex collisions as simple
-  4. (Details) Nanite Settings->Generate fallback mesh: Enabled
-  5. (Details) Fallback Target->Percent triangles
-  6. (Details) Fallback Triangle Percentage: 100
-  7. (Details) **Then click to Apply**
-  8. Save the meshh
-  9. Drag the mesh into the scene
+  * (top menu) Collision->Remove collision
+  * (Details) Complex collision mesh: select the same mesh you are editing right now
+  * (Details) Collision complexity: Use complex collisions as simple
+  * (Details) Nanite Settings->Generate fallback mesh: Enabled
+  * (Details) Fallback Target->Percent triangles
+  * (Details) Fallback Triangle Percentage: 100
+  * (Details) **Then click to Apply**
+  * Save the meshh
+  * Drag the mesh into the scene
 4. Rotate and scale the mesh to match the Gaussian splat.
-  1. Set **Position** to 0, 0, 0
-  2. Set the **Absolute rotation** of the mesh to 180, 0, 90.
-  3. Set the scale to 0.001.
+  * Set **Position** to 0, 0, 0
+  * Set the **Absolute rotation** of the mesh to 180, 0, 90.
+  * Set the scale to 0.001.
 ![](./.images/mesh_transformation.png)
 
 ### Final touches

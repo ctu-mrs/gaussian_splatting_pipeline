@@ -1,0 +1,9 @@
+# Ignore everything
+*
+
+!images
+
+# But do not ignore the .gitignore file itself
+!.gitignore
+
+!README.md

@@ -1,0 +1,1 @@
+# Gaussian Splat model generation

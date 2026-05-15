@@ -99,7 +99,10 @@ The Gaussian splat generation is an optimization process that will gradually pro
 
 1. `./03_splat_generation/01_convert_to_nerfstudio.sh` (minutes).
 2. `./03_splat_generation/02_splatfacto,sh` (tens of minutes to hours).
-* you can check the process in real time at `http://127.0.0.1:7007`.
+
+You can check the process in real time at `http://127.0.0.1:7007`.
+![](./.images/nerfstudio_splat_generation.jpg)
+
 3. `./03_splat_generation/03_export_splat.sh` (minutes).
 
 Now you can inspect the splat in `https://superspl.at/editor`.
@@ -123,6 +126,7 @@ The dense reconstruction is the most time-consiming part of the whole pipeline.
 4. `./04_dense_reconstruction/04_poisson_mesh.sh` (minutes to tens of minutes).
 
 Now you can inspect the mesh by `meshlab ./00_data/workspace/dense/meshed-poisson.ply`
+![](./.images/dense_mesh.jpg)
 
 > [!TIP]
 > It might make sense to first build a quality splat using a many images (1000+) and then running the sparse + dense pipeline for a subset of the images (~400) to just obtain the mesh.

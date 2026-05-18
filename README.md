@@ -88,7 +88,7 @@ Alternatively, you can extract the images from a video:
 > Use between 200 and 800 images. More images create a difficult problem for solving.
 
 > [!TIP]
-> When gathering images, make sure the data contain parallel motion, rather than rotation. Cover the scene with duplicate viewpoints (different 3D locations).
+> When gathering images, make sure the data contain translation motion, rather than rotation. Cover the scene with duplicate viewpoints (the same object from different 3D locations). Fix your exposure (constant ISO, shutter speed, aperture) to make sure the different images are evenly exposed. Make sure each important object (or facet of a building) is seen from more than one viewpoint.
 
 ### Camera registration (Sparse reconstruction)
 
@@ -124,10 +124,7 @@ Now you can inspect the splat in `https://superspl.at/editor`.
 Import the file `./00_data/splat_export/splat.ply`.
 
 > [!TIP]
-> You can interrupt the splat generation. If you run it again, it will resume from a saved checkpoint.
-
-> [!TIP]
-> The quality of the splat is directly influenced by the image downsample factor, which can be set in the script. If you have enough GPU memory, you don't have to downsample.
+> The quality of the splat is directly influenced by the image downsample factor, which can be set in the script. If you have enough GPU memory, you don't have to downsample. The downsample factor is set in the `02_splatfacto.sh` script.
 
 ### Dense reconstruction (Mesh generation)
 
@@ -142,9 +139,6 @@ The dense reconstruction is the most time-consuming part of the whole pipeline.
 
 Now you can inspect the mesh by `meshlab ./00_data/workspace/dense/meshed-poisson.ply`
 ![](./.images/dense_mesh.jpg)
-
-> [!TIP]
-> It might make sense to first build a quality splat using a many images (1000+) and then running the sparse + dense pipeline for a subset of the images (~400) to just obtain the mesh.
 
 ### Postprocessing
 
@@ -194,3 +188,4 @@ Now you can extract the Gaussian Splat and the Mesh
 
 1. Now rotate and scale the mesh with the splat together to match the real orientation and size. The actual scale of the splat and mesh is now arbitrary.
 2. Make the mesh invisible.
+3. You can postprocess and edit the splat in, e.g., https://superspl.at/editor.

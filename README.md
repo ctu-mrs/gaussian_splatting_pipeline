@@ -77,8 +77,10 @@ The 3D model is generated from a series of images, that should be placed into th
 
 Alternatively, you can extract the images from a video:
 1. Copy the video to `00_data/video.mp4`.
-2. Modify `01_data_preparation/01_extract_images.sh` to configure the extraction method: fixed rate or fixed image count.
-3. Run `./01_data_preparation/01_extract_images.sh` (minutes to tens of minutes).
+2. Call `01_data_preparation/01_create_python_env.py`.
+3. Run `./01_data_preparation/02_extract_images.py` (minutes to tens of minutes).
+  * The script extracts images from the video only when they change significantly from the previous image.
+  * The count can be capped.
 4. The images should appear in `00_data/images`.
 
 > [!CAUTION]

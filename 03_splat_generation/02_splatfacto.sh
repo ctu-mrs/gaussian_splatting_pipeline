@@ -3,10 +3,10 @@
 PROJECT=../00_data
 INPUT=nerfstudio_input
 OUTPUT=nerfstudio_output
-DOWNSCALE_FACTOR=2 # {1, 2, 3, 4}, how much to downscale images
 
-# Separate the command argument from the folder name
-MODEL_CMD=splatfacto-big
+DOWNSCALE_FACTOR=4 # {1, 2, 3, 4}, how much to downscale images, default is 4
+MODEL_CMD=splatfacto
+# MODEL_CMD=splatfacto-big > 12 GB VRAM
 
 mkdir -p $PROJECT/$OUTPUT
 
@@ -25,7 +25,3 @@ docker run --gpus all -u $(id -u) \
   --data /working/$INPUT \
   nerfstudio-data \
   --downscale-factor $DOWNSCALE_FACTOR
-
-  # $RESUME_ARGS \
-  # --pipeline.model.use_scale_regularization=True \
-  # --pipeline.model.cull_alpha_thresh=0.1 \

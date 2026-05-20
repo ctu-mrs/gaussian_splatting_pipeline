@@ -50,4 +50,5 @@ echo "Running COLMAP Feature matching"
 
 docker run "${DOCKER_ARGS[@]}" "${COLMAP_IMAGE}" \
 	colmap exhaustive_matcher \
-  --database_path /working/sparse.db
+  --database_path /working/sparse.db \
+  --ExhaustiveMatching.block_size 1000

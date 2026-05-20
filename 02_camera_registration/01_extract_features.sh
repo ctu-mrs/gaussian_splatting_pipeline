@@ -51,4 +51,5 @@ echo "Running COLMAP Feature Extractor on GPU..."
 docker run "${DOCKER_ARGS[@]}" "${COLMAP_IMAGE}" \
     colmap feature_extractor \
     --database_path /working/sparse.db \
-    --image_path /working/images
+    --image_path /working/images \
+    --ImageReader.single_camera 1

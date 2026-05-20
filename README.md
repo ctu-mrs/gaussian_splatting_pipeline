@@ -98,7 +98,9 @@ Sparse reconstruction is the necessary steps for creating a Gaussian splat.
 Moreover, it is also needed for 3D mesh generation (for simulating LiDAR and collisions).
 
 1. `./02_camera_registration/01_extract_features.sh` (minutes to tens of minutes)
+  * the parameter `--ImageReader.single_camera 1` inside the scipt forces colmap to treat all images as being shot with the same camera. Undo this if you need to.
 2. `./02_camera_registration/02_feature_matching.sh` (tens of minutes)
+  * you can define the block size for the exhaustive matcher in the script (all images in the block are matched against each other)
 3. `./02_camera_registration/03_sparse_reconstruction.sh` (tens of minutes to hours)
 
 The outcome of this process is a sparse model with camera poses.
@@ -116,10 +118,10 @@ The Gaussian splat generation is an optimization process that will gradually pro
 
 1. `./03_splat_generation/01_convert_to_nerfstudio.sh` (minutes).
 2. `./03_splat_generation/02_splatfacto.sh` (tens of minutes to hours).
-
-You can check the process in real time at `http://127.0.0.1:7007`.
+  * You can check the process in real time at `http://127.0.0.1:7007`.
 ![](./.images/nerfstudio_splat_generation.jpg)
-
+  * in the script, select the model ({splatfacto, splatfacto-big}). `splatfacto-big` is for > 12 GB of VRAM
+  * in the script, select the image downsize factor, default is `4`
 3. `./03_splat_generation/03_export_splat.sh` (minutes).
 
 Now you can inspect the splat in `https://superspl.at/editor`.

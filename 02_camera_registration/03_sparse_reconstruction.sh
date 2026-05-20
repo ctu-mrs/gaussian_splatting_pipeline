@@ -56,5 +56,3 @@ docker run "${DOCKER_ARGS[@]}" "${COLMAP_IMAGE}" \
     --image_path /working/images \
     --output_path /working/workspace/sparse \
     --Mapper.ba_use_gpu 1
-    # --Mapper.ba_global_max_num_iterations 20 \
-    # --Mapper.ba_global_max_refinements 2

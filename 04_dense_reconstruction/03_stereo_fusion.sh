@@ -53,4 +53,5 @@ docker run "${DOCKER_ARGS[@]}" "${COLMAP_IMAGE}" \
     --workspace_path /working/workspace/dense \
     --workspace_format COLMAP \
     --input_type geometric \
-    --output_path /working/workspace/dense/fused.ply
+    --output_path /working/workspace/dense/fused.ply \
+    --StereoFusion.max_image_size 320

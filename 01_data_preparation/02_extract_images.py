@@ -8,16 +8,16 @@ import numpy as np
 # ==========================================
 # SETTINGS
 # ==========================================
-INPUT_FILE = "../00_data/video.mp4"
+INPUT_FILE = "../00_data/berlin_1_1.MP4"
 OUTPUT_DIR = "../00_data/images"
-MAX_COUNT = 1200  
+MAX_COUNT = 6000  
 
 START_TIME_SEC = 0     # Time in seconds to start extracting from
-START_IMAGE_ID = 1       # The starting ID for the output filenames (e.g., image_0001.png)
+START_IMAGE_ID = 6450       # The starting ID for the output filenames (e.g., image_0001.png)
 
 # WINDOW THRESHOLDS (0.0 to 1.0)
 # We collect frames while similarity is between these two numbers
-MATCH_THRESHOLD_HIGH = 0.40
+MATCH_THRESHOLD_HIGH = 0.45
 MATCH_THRESHOLD_LOW = 0.35
 # ==========================================
 

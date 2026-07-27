@@ -49,6 +49,19 @@ fi
 echo "Running COLMAP Feature matching"
 
 docker run "${DOCKER_ARGS[@]}" "${COLMAP_IMAGE}" \
-	colmap exhaustive_matcher \
+  colmap spatial_matcher \
   --database_path /working/sparse.db \
-  --ExhaustiveMatching.block_size 1000
+  --SpatialMatching.ignore_z 1 \
+  --SpatialMatching.max_num_neighbors 50 \
+  --SpatialMatching.min_num_neighbors 0 \
+  --SpatialMatching.max_distance 100
+
+  # # Arguments for the exhaustive_matcher
+  # --ExhaustiveMatching.block_size 800
+
+  # # Arguments for the spatial_matcher = use spatial matcher with GPS-annotated images
+  # # Defaults for the spatial matcher for reference
+  # --SpatialMatching.ignore_z arg (=1)
+  # --SpatialMatching.max_num_neighbors arg (=50)
+  # --SpatialMatching.min_num_neighbors arg (=0)
+  # --SpatialMatching.max_distance arg (=100)

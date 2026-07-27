@@ -51,8 +51,16 @@ echo "Running COLMAP Sparse reconstruction"
 mkdir -p $HOST_DIR/workspace/sparse
 
 docker run "${DOCKER_ARGS[@]}" "${COLMAP_IMAGE}" \
-	colmap mapper \
+	colmap hierarchical_mapper --help \
     --database_path /working/sparse.db \
     --image_path /working/images \
     --output_path /working/workspace/sparse \
-    --Mapper.ba_use_gpu 1
+    --Mapper.ba_use_gpu 1 \
+    --Mapper.min_model_size 50 \
+    --Mapper.max_model_overlap 30
+
+  # # Arguments for the hierarchical_mapper
+  # # Defaults for reference
+  # --Mapper.max_num_models arg (=50)
+  # --Mapper.max_model_overlap arg (=20)
+  # --Mapper.min_model_size arg (=10)

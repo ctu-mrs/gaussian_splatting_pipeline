@@ -81,6 +81,9 @@ Alternatively, you can extract the images from a video:
 3. Run `./01_data_preparation/02_extract_images.py` (minutes to tens of minutes).
   * The script extracts images from the video only when they change significantly from the previous image.
   * The count can be capped.
+3. Alternatively, RUN `./01_data_preparation/02_extract_images_with_gps.py` (minutes to tens of minutes).
+  * The script extracts images from the video only when they change significantly from the previous image.
+  * The images are labelled with their GPS posisition from the SRT file produced by a DJI drone.
 4. The images should appear in `00_data/images`.
 
 > [!CAUTION]
@@ -139,6 +142,7 @@ The dense reconstruction is the most time-consuming part of the whole pipeline.
 1. `./04_dense_reconstruction/01_undistort_images.sh` (tens of minutes).
 2. `./04_dense_reconstruction/02_stereo_reconstructions.sh` (hours).
 3. `./04_dense_reconstruction/03_stereo_fusion.sh` (tens of minutes).
+  * this process might just fail due to low amoung of RAM, when this happens, add `--StereoFusion.max_image_size 640` and reduce the image resolution at will.
 4. `./04_dense_reconstruction/04_poisson_mesh.sh` (minutes to tens of minutes).
 
 Now you can inspect the mesh by `meshlab ./00_data/workspace/dense/meshed-poisson.ply`

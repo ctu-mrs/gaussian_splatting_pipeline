@@ -28,6 +28,7 @@ fi
 DOCKER_ARGS=(
     -it --rm
     --gpus all
+    --user $(id -u):$(id -g)
     -v "${HOST_DIR}:/working"
     -w /working
     -e NVIDIA_DRIVER_CAPABILITIES=all
